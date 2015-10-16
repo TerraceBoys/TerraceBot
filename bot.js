@@ -1,5 +1,7 @@
 var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
+var giphyKey = 'dc6zaTOxFJmzC';
+var giphyUrl = 'api.giphy.com';
 
 var botID = process.env.BOT_ID;
 
@@ -14,8 +16,11 @@ function respond() {
     this.res.end();
   } else if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
-    postMessage('http://38.media.tumblr.com/1c1dd021669887f91c132b8b3606f5f7/tumblr_nw8hxmNKrR1uewx7xo1_400.gif');
-    this.res.end();
+    getGif(request.text, function(err, gifyReponse) {
+      var gifUrl = gifyResponse["data"][0]["images"]["fixed_height"]["url"] || "Doesn't work yet";
+      postMessage(gifUrl);
+      this.res.end();
+    });
   }
   else {
     console.log("don't care");
@@ -23,6 +28,44 @@ function respond() {
     this.res.end();
   }
 }
+
+
+function getGif(request, callback) {
+  var searchText = request.replace('animate me ', '');
+  var options, body, giphyReq;
+
+  options = {
+    hostname: 'api.giphy.com',
+    path: '/v1/gifs/search',
+    method: 'POST'
+  };
+
+  body = {
+    api_key: giphyKey,
+    q: searchText,
+    limit: 2
+  };
+
+  console.log('sending ' + searchText + ' to giphy');
+
+  giphyReq = HTTPS.request(options, function(res) {
+    var data = '';
+    if(res.statusCode == 202) {
+      res.on('data', function (chunk) {
+        data += chunk;
+      });
+      res.on('end', function () {
+        var result = JSON.parse(data);
+        callback(false, result);
+      });
+    } else {
+      console.log('rejecting bad status code ' + res.statusCode);
+      callback(false, "blah");
+    }
+  });
+  giphyReq.end(JSON.stringify(body));
+}
+
 
 function postMessage(message) {
   var botResponse = message;
