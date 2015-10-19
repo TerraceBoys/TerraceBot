@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var botRegex = /^\/cool guy$/;
-  var botAnimate = /^animate me$/;
+  var botAnimate = /animate me/;
   console.log(botAnimate.test(botAnimate));
   console.log(botAnimate.test("animate me stuff"));
   if(request.text && botRegex.test(request.text)) {
