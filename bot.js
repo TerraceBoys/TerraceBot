@@ -1,8 +1,6 @@
 var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
-var giphyKey = 'dc6zaTOxFJmzC';
-var giphyUrl = 'api.giphy.com';
-
+var giphy = require('giphy-api')(); // api key goes here
 var botID = process.env.BOT_ID;
 
 function respond() {
@@ -17,8 +15,7 @@ function respond() {
   } else if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
     getGif(request.text, function(err, gifyReponse) {
-      var gifUrl = gifyResponse["data"][0]["images"]["fixed_height"]["url"] || "Doesn't work yet";
-      postMessage(gifUrl);
+      postMessage(gifyReponse);
       this.res.end();
     });
   }
@@ -32,38 +29,17 @@ function respond() {
 
 function getGif(request, callback) {
   var searchText = request.replace('animate me ', '');
-  var options, body, giphyReq;
-
-  options = {
-    hostname: 'api.giphy.com',
-    path: '/v1/gifs/search',
-    method: 'POST'
-  };
-
-  body = {
-    api_key: giphyKey,
+  
+  var options = {
     q: searchText,
-    limit: 2
+    limit: 1,
+    fmt: 'json'
   };
 
-  console.log('sending ' + searchText + ' to giphy');
-
-  giphyReq = HTTPS.request(options, function(res) {
-    var data = '';
-    if(res.statusCode == 202) {
-      res.on('data', function (chunk) {
-        data += chunk;
-      });
-      res.on('end', function () {
-        var result = JSON.parse(data);
-        callback(false, result);
-      });
-    } else {
-      console.log('rejecting bad status code ' + res.statusCode);
-      callback(false, "blah");
-    }
+  giphy.search(options, function(err, res) {
+    callback(false, res.data[0].images.original.url)
   });
-  giphyReq.end(JSON.stringify(body));
+
 }
 
 
