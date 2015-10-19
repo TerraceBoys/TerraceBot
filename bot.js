@@ -4,10 +4,10 @@ var giphy = require('giphy-api')(); // api key goes here
 var botID = process.env.BOT_ID;
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/,
-      botAnimate = /^animate me$/;
-      console.log(botAnimate.test(botAnimate));
+  var request = JSON.parse(this.req.chunks[0]);
+  var botRegex = /^\/cool guy$/;
+  var botAnimate = /^animate me$/;
+  console.log(botAnimate.test(botAnimate));
   console.log(botAnimate.test("animate me stuff"));
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
