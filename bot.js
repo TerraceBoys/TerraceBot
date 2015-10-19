@@ -15,10 +15,9 @@ function respond() {
   } else if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
     getGif(request.text, function(err, gifyResponse) {
-      console.log(gifyResponse);
       postMessage(gifyResponse);
-      this.res.end();
     });
+    this.res.end();
   }
   else {
     console.log("don't care");
