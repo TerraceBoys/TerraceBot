@@ -7,10 +7,10 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/,
       botAnimate = /^animate me$/;
-  console.log(request.text);
+      console.log(botAnimate.test(botAnimate));
+  console.log(botAnimate.test("animate me stuff"));
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
-    console.log("cool guy works");
     postMessage(cool());
     this.res.end();
   } else if (request.text && botAnimate.test(request.text)) {
