@@ -25,13 +25,7 @@ function respond() {
     this.res.writeHead(200);
     postMessage("Ayyyyy lmao");
     this.res.end();
-  } else if (request.text) {
-    this.res.writeHead(200);
-    var temp = request.nickname || "";
-    postMessage("Fuck off " + temp);
-    this.res.end();
-  }
-  else {
+  } else {
     console.log("don't care");
     this.res.writeHead(200);
     this.res.end();
