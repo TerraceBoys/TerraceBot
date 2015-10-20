@@ -2,17 +2,14 @@ var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
 var giphy = require('giphy-api')(); // api key goes here
 var botID = process.env.BOT_ID;
+// cool() for random txt images
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
   
-  if(request.text && botRegex.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage(cool());
-    this.res.end();
-  } else if (request.text && botAnimate.test(request.text)) {
+  if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
     getGif(request.text, function(err, gifyResponse) {
       if (!err) {
