@@ -5,9 +5,8 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
-  var statusCheck = /u there big guy/;
-  var botRegex = /^\/cool guy$/;
-  var botAnimate = /animate me/;
+  var statusCheck = /^brobot\?/i;
+  var botAnimate = /^animate me /i;
   
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
@@ -16,7 +15,13 @@ function respond() {
   } else if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
     getGif(request.text, function(err, gifyResponse) {
-      postMessage(gifyResponse);
+      if (!err) {
+        postMessage(gifyResponse);
+      }
+      else {
+        console.log(err);
+        postMessage("nah");
+      }
     });
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
