@@ -23,7 +23,7 @@ function respond() {
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
     this.res.writeHead(200);
-    postMessage("Ayyyyy lmao");
+    postMessage(JSON.stringify(request));
     this.res.end();
   } else {
     console.log("don't care");
