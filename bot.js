@@ -37,7 +37,8 @@ function respond() {
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
     this.res.writeHead(200);
-    postMessage("Ayyyyy lmao what's up " + request.name);
+    var name = request.name.substring(0, request.name.indexOf(' ')) || "dude"; 
+    postMessage("Ayyyyy lmao what's up " + name);
     this.res.end();
   } else {
     console.log("don't care");
