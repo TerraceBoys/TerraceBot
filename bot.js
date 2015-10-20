@@ -4,6 +4,20 @@ var giphy = require('giphy-api')(); // api key goes here
 var botID = process.env.BOT_ID;
 // cool() for random txt images
 
+// Request attributes
+// {"attachments":[],
+// "avatar_url":"http://i.groupme.com/200x132.jpeg.45cfd3ac5ba242648f3961b89ce19c68",
+// "created_at":1445374076,
+// "group_id":"17311868",
+// "id":"144537407603506323",
+// "name":"Branden Rodgers",
+// "sender_id":"21769018",
+// "sender_type":"user",
+// "source_guid":"9f0deb7bfc9b2d62919bff16c7828c09",
+// "system":false,
+// "text":"brobot?",
+// "user_id":"21769018"}
+
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
@@ -23,7 +37,7 @@ function respond() {
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
     this.res.writeHead(200);
-    postMessage(JSON.stringify(request));
+    postMessage("Ayyyyy lmao what's up " + request.name);
     this.res.end();
   } else {
     console.log("don't care");
