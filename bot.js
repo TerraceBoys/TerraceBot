@@ -24,21 +24,23 @@ function respond() {
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
     getGif(request.text, function(err, gifyResponse) {
-      setTimeout(function(err, gifyResponse) {
-        if (!err) {
+      if (!err) {
+        setTimeout(function() {
           postMessage(gifyResponse);
-        }
-        else {
-          console.log(err);
-          postMessage("nah");
-        }
-      }, 1500);
+        }, 1500);
+      }
+      else {
+        console.log(err);
+        postMessage("nah");
+      }
     });
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
     this.res.writeHead(200);
-    var name = request.name.substring(0, request.name.indexOf(' ')) || "dude"; 
-    postMessage("Ayyyyy lmao what's up " + name);
+    setTimeout(function() {
+      var name = request.name.substring(0, request.name.indexOf(' ')) || "dude"; 
+      postMessage("Ayyyyy lmao what's up " + name);
+    }, 1500);
     this.res.end();
   } else {
     console.log("don't care");
