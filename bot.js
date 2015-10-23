@@ -1,8 +1,6 @@
 var HTTPS = require('https');
-var cool = require('cool-ascii-faces');
 var giphy = require('giphy-api')(); // api key goes here
 var botID = process.env.BOT_ID;
-// cool() for random txt images
 
 // Request attributes
 // {"attachments":[],
@@ -49,7 +47,7 @@ function respond() {
 
 
 function getGif(request, callback) {
-  var searchText = request.replace('animate me ', '');
+  var searchText = request.substring(11);
   
   var options = {
     q: searchText,
