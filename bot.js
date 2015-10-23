@@ -24,13 +24,15 @@ function respond() {
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
     getGif(request.text, function(err, gifyResponse) {
-      if (!err) {
-        postMessage(gifyResponse);
-      }
-      else {
-        console.log(err);
-        postMessage("nah");
-      }
+      setTimeout(function(err, gifyResponse) {
+        if (!err) {
+          postMessage(gifyResponse);
+        }
+        else {
+          console.log(err);
+          postMessage("nah");
+        }
+      }, 1500);
     });
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
