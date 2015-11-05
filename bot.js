@@ -61,7 +61,7 @@ function getGif(request, callback) {
 
   giphy.search(options, function(err, res) {
     var index = Math.floor((Math.random() * 5) + 1);
--   callback(false, res)
+-   callback(false, res.data[index].images.original.url)
   });
 
 }
