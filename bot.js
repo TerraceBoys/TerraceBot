@@ -20,7 +20,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
-  
+
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
     getGif(request.text, function(err, gifyResponse) {
@@ -38,7 +38,7 @@ function respond() {
   } else if (request.text && statusCheck.test(request.text)) {
     this.res.writeHead(200);
     setTimeout(function() {
-      var name = request.name.substring(0, request.name.indexOf(' ')) || "dude"; 
+      var name = request.name.substring(0, request.name.indexOf(' ')) || "dude";
       postMessage("Ayyyyy lmao what's up " + name);
     }, 1500);
     this.res.end();
@@ -52,7 +52,7 @@ function respond() {
 
 function getGif(request, callback) {
   var searchText = request.substring(11);
-  
+
   var options = {
     q: searchText,
     limit: 1,
@@ -60,7 +60,8 @@ function getGif(request, callback) {
   };
 
   giphy.search(options, function(err, res) {
-    callback(false, res.data[0].images.original.url)
+    var index = Math.floor((Math.random() * 5) + 1);
+    callback(false, res.data[index].images.original.url)
   });
 
 }
