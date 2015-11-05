@@ -55,7 +55,7 @@ function getGif(request, callback) {
   
   var options = {
     q: searchText,
-    limit: 1,
+    limit: 5,
     fmt: 'json'
   };
 
