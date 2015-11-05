@@ -60,7 +60,7 @@ function getGif(request, callback) {
   };
 
   giphy.search(options, function(err, res) {
-    callback(false, res.data[Math.floor(Math.random()*3)].images.original.url)
+    callback(false, res.data[0].images.original.url)
   });
 
 }
