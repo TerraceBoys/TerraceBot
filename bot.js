@@ -20,6 +20,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
+  var billPic = /^bill;
   
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
@@ -40,6 +41,12 @@ function respond() {
     setTimeout(function() {
       var name = request.name.substring(0, request.name.indexOf(' ')) || "dude"; 
       postMessage("Ayyyyy lmao what's up " + name);
+    }, 1500);
+    this.res.end();
+  } else if (request.text && billPic.test(request.text)) {
+    this.res.writeHead(200);
+    setTimeout(function() {
+      postMessage("http://s20.postimg.org/j9rfeyr19/6358791836146480831571443913_bill_cosby_before_a.jpg");
     }, 1500);
     this.res.end();
   } else {
