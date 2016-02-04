@@ -20,7 +20,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
-  var billPic = /^bill;
+  var billPic = /^bill\?/i;
   
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
