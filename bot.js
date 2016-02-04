@@ -1,6 +1,16 @@
 var HTTPS = require('https');
 var giphy = require('giphy-api')(); // api key goes here
 var botID = process.env.BOT_ID;
+var parthArray = ["http://s20.postimg.org/yl6qw2bml/24973_345810622060_2388172_n.jpg",
+"http://s20.postimg.org/3n5oi30il/35265_412838317060_5577178_n.jpg", 
+"http://s20.postimg.org/6wk3ojom5/35265_412838322060_1141727_n.jpg",
+"http://s20.postimg.org/um9jd8mzh/35265_412838327060_8307595_n.jpg",
+"http://s20.postimg.org/uq3cthsgt/35265_412838337060_1290307_n.jpg",
+"http://s20.postimg.org/gq1b1cqql/35265_412838342060_5152058_n.jpg",
+"http://s20.postimg.org/8gpfmxx0d/943509_10201433690910379_1806118327_n.jpg",
+"http://s20.postimg.org/fzd69bdr1/965080_10201154670525879_688342159_o.jpg",
+"http://s20.postimg.org/70dx4su3h/1013862_10152103898984262_1691110312_n.jpg",
+"http://s20.postimg.org/5b4twqee5/12314446_10208006229383288_7296666242040685180_o.jpg"]
 
 // Request attributes
 // {"attachments":[],
@@ -20,6 +30,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
+  var parthPic = /parth/i;
   
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
@@ -40,6 +51,13 @@ function respond() {
     setTimeout(function() {
       var name = request.name.substring(0, request.name.indexOf(' ')) || "dude"; 
       postMessage("Ayyyyy lmao what's up " + name);
+    }, 1500);
+    this.res.end();
+  } else if (request.text && parthPic.test(request.text)) {
+    this.res.writeHead(200);
+    var x = Math.floor((Math.random()*parthArray.length));
+    setTimeout(function() {
+      postMessage(parthArray[x]);
     }, 1500);
     this.res.end();
   } else {
