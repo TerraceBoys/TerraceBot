@@ -43,7 +43,7 @@ function respond() {
       postMessage("Ayyyyy lmao what's up " + name);
     }, 1500);
     this.res.end();
-  } else if (request.text && billPic.test(request.text)) {
+  } else if (request.text && parthPic.test(request.text)) {
     this.res.writeHead(200);
     setTimeout(function() {
       postMessage("http://s20.postimg.org/j9rfeyr19/6358791836146480831571443913_bill_cosby_before_a.jpg");
