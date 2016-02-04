@@ -1,6 +1,7 @@
 var HTTPS = require('https');
 var giphy = require('giphy-api')(); // api key goes here
 var botID = process.env.BOT_ID;
+var parthArray = ["http://s20.postimg.org/j9rfeyr19/6358791836146480831571443913_bill_cosby_before_a.jpg"]
 
 // Request attributes
 // {"attachments":[],
@@ -46,7 +47,7 @@ function respond() {
   } else if (request.text && parthPic.test(request.text)) {
     this.res.writeHead(200);
     setTimeout(function() {
-      postMessage("http://s20.postimg.org/j9rfeyr19/6358791836146480831571443913_bill_cosby_before_a.jpg");
+      postMessage(parthArray[0]);
     }, 1500);
     this.res.end();
   } else {
