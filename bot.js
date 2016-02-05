@@ -10,7 +10,7 @@ var parthArray = ["http://s20.postimg.org/yl6qw2bml/24973_345810622060_2388172_n
 "http://s20.postimg.org/8gpfmxx0d/943509_10201433690910379_1806118327_n.jpg",
 "http://s20.postimg.org/fzd69bdr1/965080_10201154670525879_688342159_o.jpg",
 "http://s20.postimg.org/70dx4su3h/1013862_10152103898984262_1691110312_n.jpg",
-"http://s20.postimg.org/5b4twqee5/12314446_10208006229383288_7296666242040685180_o.jpg,
+"http://s20.postimg.org/5b4twqee5/12314446_10208006229383288_7296666242040685180_o.jpg",
 "http://s20.postimg.org/v0l0ulw7x/017eb4dd_8d37_4043_8d8e_c5fd549a5b35.png",
 "http://s20.postimg.org/izzktvot9/1125x1500_jpeg_bec7b79afca54fe496502f7f08b4e633.jpg",
 "http://s20.postimg.org/vyvtsv9st/11110593_10204167242961442_5272107608490811576_o.jpg",
