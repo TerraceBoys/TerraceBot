@@ -34,7 +34,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
-  var parthPic = /parth/i;
+  var parthPic = /koos/i;
   
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
