@@ -36,7 +36,9 @@ function respond() {
   var botAnimate = /^animate me /i;
   var parthPic = /koos/i;
   var koosBot = /koosBot/i;
-  var name = request.name.substring(0, request.name.indexOf(' '));
+  var brian = /brian/i;
+  // var name = request.name.substring(0, request.name.indexOf(' '));
+  
   
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
@@ -52,10 +54,16 @@ function respond() {
       }
     });
     this.res.end();
-  } else if (koosBot.test(name)) {
+  } else if (koosBot.test(request.name)) {
     this.res.writeHead(200);
     setTimeout(function() {
-      postMessage("Fuck off + " + name);
+      postMessage("Fuck off + " + request.name);
+    }, 1500);
+    this.res.end();
+  } else if (brian.test(request.name)) {
+    this.res.writeHead(200);
+    setTimeout(function() {
+      postMessage("Brian");
     }, 1500);
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
