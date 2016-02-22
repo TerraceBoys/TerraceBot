@@ -61,7 +61,8 @@ function respond() {
     this.res.writeHead(200);
     var x = Math.floor((Math.random()*parthArray.length));
     setTimeout(function() {
-      postMessage(parthArray[x]);
+      postMessage("Fuck off")
+      // postMessage(parthArray[x]);
     }, 1500);
     this.res.end();
   } else {
