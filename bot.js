@@ -35,6 +35,8 @@ function respond() {
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
   var parthPic = /koos/i;
+  var koosBot = /koosBot/i;
+  var name = request.name.substring(0, request.name.indexOf(' '));
   
   if (request.text && botAnimate.test(request.text)) {
     this.res.writeHead(200);
@@ -49,6 +51,12 @@ function respond() {
         postMessage("nah");
       }
     });
+    this.res.end();
+  } else if (koosBot.test(name)) {
+    this.res.writeHead(200);
+    setTimeout(function() {
+      postMessage("Fuck off + " + name);
+    }, 1500);
     this.res.end();
   } else if (request.text && statusCheck.test(request.text)) {
     this.res.writeHead(200);
