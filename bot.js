@@ -35,7 +35,7 @@ function respond() {
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
   var parthPic = /koos/i;
-  var koosBot = /koosBot/i;
+  var koosBot = /KoosBot/i;
 
   
   if (request.text && botAnimate.test(request.text)) {
