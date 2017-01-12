@@ -34,7 +34,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var statusCheck = /^brobot\?/i;
   var botAnimate = /^animate me /i;
-  var parthPic = /koos/i;
+  var parthPic = /boobs/i;
   var koosBot = /KoosBot/i;
 
   
