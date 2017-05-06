@@ -86,12 +86,13 @@ function getGif(request, callback) {
   
   var options = {
     q: searchText,
-    limit: 1,
+    limit: 5,
     fmt: 'json'
   };
 
   giphy.search(options, function(err, res) {
-    callback(false, res.data[0].images.original.url)
+    var index = Math.floor((Math.random() * 5));
+    callback(false, res.data[index].images.original.url);
   });
 
 }
